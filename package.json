@@ -1,0 +1,35 @@
+{
+  "name": "vite-blog-vue3",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --port=8005",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@degon/http-request": "^0.0.2",
+    "@element-plus/icons-vue": "^1.1.4",
+    "axios": "^0.26.1",
+    "element-plus": "^2.1.4",
+    "path-browserify": "^1.0.1",
+    "path-to-regexp": "^6.2.0",
+    "qs": "^6.10.3",
+    "type-fest": "^2.12.1",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.14",
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.1.0"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-require-context": "^1.0.9",
+    "@types/qs": "^6.9.7",
+    "@types/webpack-env": "^1.16.3",
+    "@vitejs/plugin-vue": "^2.2.0",
+    "@vitejs/plugin-vue-jsx": "^1.3.8",
+    "sass": "^1.49.9",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vue-tsc": "^0.29.8"
+  }
+}
