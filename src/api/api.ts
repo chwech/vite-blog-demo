@@ -7,3 +7,6 @@ export const demoRequest = (params: object): Promise<{data: string}> => $axios.g
 export const area = (params: object) => $axios.get('area', { params }, { baseURL })// 地区
 
 export const login = (data: any) => $axios.post('auth/login', { data })
+
+
+export const getArticles = (params: object) => $axios.get('article', { params })
