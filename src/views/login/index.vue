@@ -125,6 +125,7 @@ export default defineComponent({
           login(loginForm).then((res) => {
             tools.setStore('admin_token', res.data.access_token, new Date('2022-4-15').getTime())
             router.push({ path: redirect.value || '/' })
+          }).finally(() => {
             loading.value = false
           })
         } else {

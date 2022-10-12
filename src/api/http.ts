@@ -22,6 +22,7 @@ httpRequest.setInterceptorsRequest(config => {
 // 拦截 响应
 httpRequest.setInterceptorsResponse(
   res => {
+    console.log('res', res)
     if (res.headers['content-disposition']) {
       // 下载文件
       tools.downloadFile(res)
@@ -59,7 +60,8 @@ httpRequest.setInterceptorsResponse(
     }
     if (err && err.request) {
       const status: number = err.request.status
-      err.msg = httpStatus[status] || '网络发生错误'
+      const data = JSON.parse(err.request.responseText)
+      err.msg = data.message || httpStatus[status] || '网络发生错误'
       switch (status) {
         case 401:
           console.log('没有权限，请检查token是否合法')
