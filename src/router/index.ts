@@ -1,4 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw, Router, RouterMatcher } from 'vue-router'
+// import { createPermissionGuard } from './guard/permissionsGuard'
+import { createLoginGuard } from './guard/loginGuard'
+import { createAuthGuard } from './guard/authGuard'
+// import { createIsKeepLoginGuard } from './guard/isKeepLoginGuard'
+
 
 type RouterInstance = Router & {
   matcher?: RouterMatcher[]
@@ -30,5 +35,10 @@ export function resetRouter () {
   const newRouter:RouterInstance = createRouterHandler()
   router.matcher = newRouter.matcher // reset router
 }
+
+createLoginGuard(router)
+// createPermissionGuard(router)
+// createIsKeepLoginGuard(router)
+createAuthGuard(router)
 
 export default router

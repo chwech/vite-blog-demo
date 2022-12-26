@@ -28,7 +28,7 @@ httpRequest.setInterceptorsResponse(
       tools.downloadFile(res)
       return Promise.resolve({})
     }
-    if (res.status === 200) {
+    if (res.status === 200 || res.status === 201) {
       // success 获取验证码接口略微不同
       const { data, data: { status, success, msg }, config: { url, customParams = { errAlert: false, successAlert: false } } } = res
       // 如果url后缀是.json，那么就直接返回结果

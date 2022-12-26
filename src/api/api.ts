@@ -10,7 +10,7 @@ export const login = (data: any) => $axios.post('auth/login', { data })
 
 
 export const getArticles = (params: object) => $axios.get('article', { params })
-
+export const publishArticle = (data: object) => $axios.post('article', { data })
 
 
 export const upload = (data: any) => $axios.post('upload/file', { data })
