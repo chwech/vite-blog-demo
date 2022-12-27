@@ -4,7 +4,7 @@
     <template #footer>
       <div class="dialog-footer">
         <el-button type="info" size="small" @click="handleCancel"> 取消 </el-button>
-        <el-button type="primary" size="small" @click="handleSubmit"> 保存 </el-button>
+        <el-button type="primary" size="small" @click="handleSubmit" :loading="loading"> 保存 </el-button>
       </div>
     </template>
   </dg-edit-dialog>
@@ -20,6 +20,7 @@ import { computed, reactive, ref, nextTick } from 'vue'
 const emit = defineEmits<{
     (event: 'success'): void
   }>(),
+  loading = ref(false),
   // { requiredValidator } = useValidator(),
   visible = ref(false),
   isEdit = ref(false),
@@ -57,14 +58,19 @@ const emit = defineEmits<{
     ],
   }),
   handleSubmit = async () => {
-    await formRef.value?.submit()
-    if (isEdit.value) {
-      // await updateRole(formConf.model.id, { ...formConf.model })
-    } else {
-      await publishArticle({ ...formConf.model })
+    try {
+      loading.value = true
+      await formRef.value?.submit()
+      if (isEdit.value) {
+        // await updateRole(formConf.model.id, { ...formConf.model })
+      } else {
+        await publishArticle({ ...formConf.model })
+      }
+      emit('success')
+      close()
+    } finally {
+      loading.value = false
     }
-    emit('success')
-    close()
   },
   handleCancel = () => {
     formRef.value?.reset()
