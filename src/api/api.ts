@@ -14,5 +14,7 @@ export const publishArticle = (data: object) => $axios.post('article', { data })
 export const deleteArticle = (id: number, data?: object) => $axios.delete(`article/${id}`, { data })
 
 
+export const addCategory = (data: object) => $axios.post('category', { data })
+export const getCategory = () => $axios.get('category')
 
 export const upload = (data: any) => $axios.post('upload/file', { data })
