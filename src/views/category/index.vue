@@ -10,7 +10,7 @@
 </template>
 <script lang="ts" setup>
 import EditDialog from './components/EditDialog.vue';
-import { deleteArticle, getCategory } from '@/api/api';
+import { deleteCategory, getCategory } from '@/api/api';
 import { ref } from 'vue';
 
 const columns = [
@@ -24,7 +24,7 @@ const buttonGroup = [
     type: 'danger',
     isConfirm: true,
     handler: async (row: any) => {
-      await deleteArticle(row.id)
+      await deleteCategory(row.id)
       refresh()
     }
   }
