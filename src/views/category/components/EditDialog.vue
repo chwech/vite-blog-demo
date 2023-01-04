@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 // import { addRole, updateRole } from '@/api/modules/user'
 // import { useValidator } from '@/hooks/useValidator'
-import { addCategory, getCategory, publishArticle } from '@/api/api';
+import { addCategory, getCategory, publishArticle, updateCategory } from '@/api/api';
 import { DgForm } from '@degon/admin-component-vue3'
 import { ConfigModel } from '@degon/admin-component-vue3/lib/components/form/src/interface'
 import { computed, reactive, ref, nextTick } from 'vue'
@@ -28,7 +28,8 @@ const emit = defineEmits<{
   title = computed(() => (isEdit.value ? '编辑' : '新增')),
   formRef = ref<InstanceType<typeof DgForm>>(),
   formConf = reactive<ConfigModel>({
-    model: {},
+    model: {
+    },
     hideButtons: true,
     areas: [
       {
@@ -60,6 +61,7 @@ const emit = defineEmits<{
             __content__: {
               options,
               props: {
+                checkStrictly: true,
                 emitPath: false,
                 label: 'name',
                 value: 'id'
@@ -87,6 +89,7 @@ const emit = defineEmits<{
       await formRef.value?.submit()
       if (isEdit.value) {
         // await updateRole(formConf.model.id, { ...formConf.model })
+        await updateCategory(formConf.model.id, { ...formConf.model })
       } else {
         await addCategory({ ...formConf.model })
       }
