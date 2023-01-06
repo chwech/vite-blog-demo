@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 // import { addRole, updateRole } from '@/api/modules/user'
 // import { useValidator } from '@/hooks/useValidator'
-import { publishArticle } from '@/api/api';
+import { getCategory, publishArticle } from '@/api/api';
 import { DgForm } from '@degon/admin-component-vue3'
 import { ConfigModel } from '@degon/admin-component-vue3/lib/components/form/src/interface'
 import { computed, reactive, ref, nextTick } from 'vue'
@@ -21,6 +21,7 @@ const emit = defineEmits<{
     (event: 'success'): void
   }>(),
   loading = ref(false),
+  options = ref([]),
   // { requiredValidator } = useValidator(),
   visible = ref(false),
   isEdit = ref(false),
@@ -41,6 +42,22 @@ const emit = defineEmits<{
               type: 'text',
               // rules: [requiredValidator('请输入角色名称')],
             },
+          },
+          {
+            __config__: {
+              prop: 'categoryId',
+              label: '分类',
+              type: 'cascader',
+            },
+            __content__: {
+              options,
+              props: {
+                checkStrictly: true,
+                emitPath: false,
+                label: 'name',
+                value: 'id'
+              }
+            }
           },
           {
             width: '100%',
@@ -91,6 +108,11 @@ const emit = defineEmits<{
   close = () => {
     handleCancel()
   }
+
+
+  getCategory().then(data => {
+    options.value = [{ name: '无', id: 0 }].concat(data.data)
+  })
 
 defineExpose({
   open,

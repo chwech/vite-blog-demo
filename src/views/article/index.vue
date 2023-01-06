@@ -16,6 +16,7 @@ import { ref } from 'vue';
 const columns = [
   { isVisible: true, type: 'order', label: '序号' },
   { isVisible: true, prop: 'title', label: '标题' },
+  { isVisible: true, prop: 'category.name', label: '分类' },
   { isVisible: true, prop: 'content', label: '内容' },
   { isVisible: true, prop: 'create_at', label: '新增时间' },
   { isVisible: true, prop: 'update_at', label: '更新时间' }

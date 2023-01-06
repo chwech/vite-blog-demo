@@ -20,3 +20,5 @@ export const deleteCategory = (id:number) => $axios.delete(`category/${id}`)
 export const updateCategory = (id:number, data:object) => $axios.patch(`category/${id}`, { data })
 
 export const upload = (data: any) => $axios.post('upload/file', { data })
+export const getQiniuToken = (params: any) => $axios.get(`upload/token`, { params })
+export const getQiniuDomains = (bucketName: string) => $axios.get(`upload/domains`, { params: { bucketName }})

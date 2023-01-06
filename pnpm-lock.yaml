@@ -14,6 +14,7 @@ specifiers:
   element-plus: ^2.1.4
   path-browserify: ^1.0.1
   path-to-regexp: ^6.2.0
+  qiniu-js: ^3.4.1
   qs: ^6.10.3
   sass: ^1.49.9
   type-fest: ^2.12.1
@@ -26,7 +27,7 @@ specifiers:
   vuex-persistedstate: ^4.1.0
 
 dependencies:
-  '@degon/admin-component-vue3': 1.14.0_vue@3.2.45
+  '@degon/admin-component-vue3': 1.14.0_3f7oukv7hybdxijbvzxwyic75a
   '@degon/http-request': 0.0.2_axios@0.26.1+qs@6.11.0
   '@element-plus/icons': 0.0.11
   '@element-plus/icons-vue': 1.1.4_vue@3.2.45
@@ -34,6 +35,7 @@ dependencies:
   element-plus: 2.2.27_vue@3.2.45
   path-browserify: 1.0.1
   path-to-regexp: 6.2.1
+  qiniu-js: 3.4.1
   qs: 6.11.0
   type-fest: 2.19.0
   vue: 3.2.45
@@ -366,17 +368,22 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@degon/admin-component-vue3/1.14.0_vue@3.2.45:
+  /@degon/admin-component-vue3/1.14.0_3f7oukv7hybdxijbvzxwyic75a:
     resolution: {integrity: sha512-HJfIMv8xTOyLAu+XQIofs8M8Knf/ME4jaXJ+s4MUnvBhbkOld6qVKOrxSHBi9CqGquudnuJ/vL4362JZYAr4Yw==, tarball: '@degon/admin-component-vue3/-/@degon/admin-component-vue3-1.14.0.tgz'}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     requiresBuild: true
+    peerDependencies:
+      '@element-plus/icons-vue': ^2.0.6
+      element-plus: ^2.1.7
+      vue: ^3.2.0
     dependencies:
+      '@element-plus/icons-vue': 1.1.4_vue@3.2.45
       core-js: 3.27.0
       dayjs: 1.11.7
+      element-plus: 2.2.27_vue@3.2.45
       qiniu-js: 3.4.1
+      vue: 3.2.45
       vue-advanced-cropper: 2.8.6_vue@3.2.45
-    transitivePeerDependencies:
-      - vue
     dev: false
 
   /@degon/http-request/0.0.2_axios@0.26.1+qs@6.11.0:

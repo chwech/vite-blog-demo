@@ -16,6 +16,7 @@
     "element-plus": "^2.1.4",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.0",
+    "qiniu-js": "^3.4.1",
     "qs": "^6.10.3",
     "type-fest": "^2.12.1",
     "vue": "^3.2.25",
