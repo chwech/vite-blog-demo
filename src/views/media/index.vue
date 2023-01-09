@@ -18,11 +18,18 @@
     </div>
   </template>
 </el-upload>
+
+<div>
+  <div v-for="item of list">
+    <img :src="'//cdn.chwech.com/' + item.url" alt="" width="100" height="100">
+    <el-button type="danger" @click="onDelte(item.url)">删除</el-button>
+  </div>
+</div>
 </template>
 <script lang='ts' setup>
-import { getQiniuToken, getQiniuDomains } from '@/api/api';
+import { getQiniuToken, getQiniuDomains, createMedia, getMedia, deleteMedia } from '@/api/api';
 import { UploadFile, UploadFiles } from 'element-plus';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 
 const data = reactive({
@@ -35,7 +42,7 @@ const beforeUpload = (file: any) => {
   return getQiniuToken({
     overwrite: 1,
     key: key,
-    returnBody: '{"key":"$(key)","hash":"$(etag)","size":$(fsize),"name":"$(fname)","mimeType":"$(mimeType)"}'
+    returnBody: '{"url":"$(key)","hash":"$(etag)","size":$(fsize),"name":"$(fname)","mimeType":"$(mimeType)", "width": $(imageInfo.width), "height": $(imageInfo.height)}'
   }).then(({data: token}) => {  
     data.token = token
     data.key = key
@@ -43,11 +50,26 @@ const beforeUpload = (file: any) => {
   })
 }
 
-const onSuccess = (response:any, file: UploadFile, files: UploadFiles) => {
+const onSuccess = async (response:any, file: UploadFile, files: UploadFiles) => {
   console.log(response, file, files)
+  await createMedia(response)
+  await getList()
 }
 
 getQiniuDomains('www-chwech-com')
+
+const list = ref<any[]>([])
+const getList = () => {
+  return getMedia().then(res => {
+    list.value = res.data.data
+  })
+}
+getList()
+
+const onDelte = async (key: string) => {
+  await deleteMedia(key)
+  await getList()
+}
 </script>
 <style lang='scss' scoped>
 

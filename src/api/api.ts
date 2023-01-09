@@ -22,3 +22,6 @@ export const updateCategory = (id:number, data:object) => $axios.patch(`category
 export const upload = (data: any) => $axios.post('upload/file', { data })
 export const getQiniuToken = (params: any) => $axios.get(`upload/token`, { params })
 export const getQiniuDomains = (bucketName: string) => $axios.get(`upload/domains`, { params: { bucketName }})
+export const createMedia = (data: object) => $axios.post('media', { data })
+export const getMedia = (params?: any) => $axios.get('media', { params })
+export const deleteMedia = (key: string) => $axios.delete('media', { data: { key} })
